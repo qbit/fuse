@@ -1,4 +1,4 @@
-// +build freebsd
+// +build openbsd
 
 package fuse
 
@@ -16,7 +16,7 @@ type attr struct {
 	CtimeNsec uint32
 	Mode      uint32
 	Nlink     uint32
-	Uid       uint32
+	UID       uint32
 	Gid       uint32
 	Rdev      uint32
 	Blksize   uint32
@@ -28,11 +28,11 @@ func (a *attr) Crtime() time.Time {
 }
 
 func (a *attr) SetCrtime(s uint64, ns uint32) {
-	// ignored on freebsd
+	// ignored on openbsd
 }
 
 func (a *attr) SetFlags(f uint32) {
-	// ignored on freebsd
+	// ignored on openbsd
 }
 
 type setattrIn struct {

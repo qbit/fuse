@@ -4,6 +4,7 @@ import (
 	"os"
 	"runtime"
 	"syscall"
+	"strings"
 	"testing"
 
 	"bazil.org/fuse"
@@ -17,8 +18,8 @@ func init() {
 }
 
 func TestMountOptionFSName(t *testing.T) {
-	if runtime.GOOS == "freebsd" {
-		t.Skip("FreeBSD does not support FSName")
+	if strings.Contains(runtime.GOOS, "bsd") {
+		t.Skip("BSD does not support FSName")
 	}
 	t.Parallel()
 	const name = "FuseTestMarker"
@@ -40,8 +41,8 @@ func TestMountOptionFSName(t *testing.T) {
 }
 
 func testMountOptionFSNameEvil(t *testing.T, evil string) {
-	if runtime.GOOS == "freebsd" {
-		t.Skip("FreeBSD does not support FSName")
+	if strings.Contains(runtime.GOOS, "bsd") {
+		t.Skip("BSD does not support FSName")
 	}
 	t.Parallel()
 	var name = "FuseTest" + evil + "Marker"
@@ -97,8 +98,8 @@ func TestMountOptionSubtype(t *testing.T) {
 	if runtime.GOOS == "darwin" {
 		t.Skip("OS X does not support Subtype")
 	}
-	if runtime.GOOS == "freebsd" {
-		t.Skip("FreeBSD does not support Subtype")
+	if strings.Contains(runtime.GOOS, "bsd") {
+		t.Skip("BSD does not support Subtype")
 	}
 	t.Parallel()
 	const name = "FuseTestMarker"
@@ -161,8 +162,8 @@ func (f unwritableFile) Attr(ctx context.Context, a *fuse.Attr) error {
 }
 
 func TestMountOptionDefaultPermissions(t *testing.T) {
-	if runtime.GOOS == "freebsd" {
-		t.Skip("FreeBSD does not support DefaultPermissions")
+	if strings.Contains(runtime.GOOS, "bsd") {
+		t.Skip("BSD do not support DefaultPermissions")
 	}
 	t.Parallel()
 
