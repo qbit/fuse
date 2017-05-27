@@ -16,7 +16,7 @@ type attr struct {
 	CtimeNsec uint32
 	Mode      uint32
 	Nlink     uint32
-	UID       uint32
+	Uid       uint32
 	Gid       uint32
 	Rdev      uint32
 	Blksize   uint32
